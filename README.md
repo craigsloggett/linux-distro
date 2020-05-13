@@ -16,15 +16,29 @@ The following decisions have been made on the implementation:
 
 ## tasks
 
+ - [ ] Write shell script to setup a chroot environment for installation.
  - [ ] Write shell script to setup the base filesystem layout (based on FHS).
  - [ ] Populate default configuration files.
  - [ ] Define base packages (compiler, base toolset(s), init, libc, tls, shell, and their dependencies).
+ - [ ] Write installation instructions.
 
 ## package manager
 
  - [ ] Compile source code from upstream sources.
  - [ ] Handle run-time dependencies.
  - [ ] Handle build-time dependencies.
+
+## installation instructions (WIP)
+
+ 1. Boot into any live Linux distribution.
+ 1. Prepare the disks.
+ 1. Mount the disks to `/mnt`.
+ 1. Create a `chroot` environment in `/mnt` (dev, proc, sys).
+ 1. `chroot` into this environment.
+ 1. Create the base filesystem layout.
+ 1. Install skeleton configuration files.
+ 1. ...Exit the `chroot` environment?
+ 1. ...Compile all the necessary base packages (from the host) into the `chroot`?
 
 ### directory structure of packages
 
