@@ -27,6 +27,13 @@ The following decisions have been made on the implementation:
  - [ ] Define base packages (compiler, base toolset(s), init, libc, tls, shell, and their dependencies).
  - [ ] Write installation instructions.
 
+## Tested Builds
+
+| Host         | Target      | Build Status   |
+| ------------ | ----------- | -------------- | 
+| x86_64-musl  | x86_64-musl | Pending        |
+| x86_64-glibc | x86_64-musl | Pending        |
+
 ### Write a shell script to setup the filesystem layout (based on FHS).
 
 Version 3.0 of the FHS is being used and can be found here: https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html
