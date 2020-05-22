@@ -109,30 +109,30 @@ For the build system, I will be using Void Linux live install image to build the
 
 ```
 # Build Tools (and dependencies)
-linux - http://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.6.14.tar.xz
-gcc - https://gcc.gnu.org/pub/gcc/releases/gcc-10.1.0/gcc-10.1.0.tar.xz
- - gmp - https://gmplib.org/download/gmp/gmp-6.2.0.tar.xz
- - mpfr - https://ftp.gnu.org/gnu/mpfr/mpfr-4.0.2.tar.xz
- - mpc - https://ftp.gnu.org/gnu/mpc/mpc-1.1.0.tar.gz
-binutils - https://ftp.gnu.org/gnu/binutils/binutils-2.34.tar.xz
- - flex - https://github.com/westes/flex/releases/download/v2.6.4/flex-2.6.4.tar.gz
-   - m4 - https://ftp.gnu.org/gnu/m4/m4-1.4.18.tar.xz
-   - make - https://ftp.gnu.org/gnu/make/make-4.3.tar.gz
- - zlib - https://zlib.net/zlib-1.2.11.tar.gz
-bison - https://ftp.gnu.org/gnu/bison/bison-3.6.2.tar.xz
-musl - https://www.musl-libc.org/releases/musl-1.2.0.tar.gz
+linux        - http://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.6.14.tar.xz
+gcc          - https://gcc.gnu.org/pub/gcc/releases/gcc-10.1.0/gcc-10.1.0.tar.xz
+├── gmp      - https://gmplib.org/download/gmp/gmp-6.2.0.tar.xz
+├── mpfr     - https://ftp.gnu.org/gnu/mpfr/mpfr-4.0.2.tar.xz
+└── mpc      - https://ftp.gnu.org/gnu/mpc/mpc-1.1.0.tar.gz
+binutils     - https://ftp.gnu.org/gnu/binutils/binutils-2.34.tar.xz
+├── flex     - https://github.com/westes/flex/releases/download/v2.6.4/flex-2.6.4.tar.gz
+│   ├── m4   - https://ftp.gnu.org/gnu/m4/m4-1.4.18.tar.xz
+│   └── make - https://ftp.gnu.org/gnu/make/make-4.3.tar.gz
+└── zlib     - https://zlib.net/zlib-1.2.11.tar.gz
+bison        - https://ftp.gnu.org/gnu/bison/bison-3.6.2.tar.xz
+musl         - https://www.musl-libc.org/releases/musl-1.2.0.tar.gz
 
 # (De)compression Utilities
-bzip2 - https://sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz
-gzip (pigz) - https://zlib.net/pigz/pigz-2.4.tar.gz
-xz - https://nchc.dl.sourceforge.net/project/lzmautils
+bzip2        - https://sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz
+gzip (pigz)  - https://zlib.net/pigz/pigz-2.4.tar.gz
+xz           - https://nchc.dl.sourceforge.net/project/lzmautils
 
 # Helpful Utilities
-pkgconf - https://distfiles.dereferenced.org/pkgconf/pkgconf-1.6.3.tar.xz
+pkgconf      - https://distfiles.dereferenced.org/pkgconf/pkgconf-1.6.3.tar.xz
 
 # System Applications
-busybox - https://busybox.net/downloads/busybox-1.31.1.tar.bz2
- - libressl - https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-3.1.2.tar.gz
+busybox      - https://busybox.net/downloads/busybox-1.31.1.tar.bz2
+└── libressl - https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-3.1.2.tar.gz
 ```
 
 *Configure Compiler*
