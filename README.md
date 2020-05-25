@@ -17,15 +17,14 @@ The following decisions have been made on the implementation:
 
 ## tasks
 
- - [ ] Write shell script to setup a chroot environment for installation.
- - [x] Write shell script to setup the filesystem layout (based on FHS).
- - [ ] Prepare the build system.
  - [ ] Build Stage 1 - temporary toolchain capable of producing executables for the target platform.
  - [ ] Build Stage 2 - temporary system, native to the target platform.
  - [ ] Build Stage 3 - full native system, native to the target platform.
+ - [x] Write shell script to setup the filesystem layout (based on FHS).
+ - [ ] Write shell script to setup a chroot environment for installation.
  - [ ] Populate default configuration files.
- - [ ] Define base packages (compiler, base toolset(s), init, libc, tls, shell, and their dependencies).
  - [ ] Write installation instructions.
+ - [ ] Build a package manager.
 
 ## Tested Builds
 
