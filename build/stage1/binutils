@@ -1,0 +1,40 @@
+#!/bin/sh -e
+#
+# Stage 1 - Build binutils
+
+BUILD_USER=build
+BUILD_GROUP=build
+BUILD_ROOT=/mnt/build
+BUILD_DEST=/tools
+
+version="2.34"
+
+cd "${BUILD_ROOT}"/source
+
+# Download from upstream.
+wget https://ftp.gnu.org/gnu/binutils/binutils-"${version}".tar.xz
+xz -d binutils-"${version}".tar.xz
+tar xf binutils-"${version}".tar
+
+# Prepare the build folder.
+cd binutils-"${version}"
+mkdir -v build && cd build
+
+# Configure the Source
+../configure \
+	--prefix="${BUILD_DEST}" \
+	--target="${STAGE1_TARGET}"  \
+	--with-sysroot="${STAGE1_DEST}" \
+	--with-lib-path="${BUILD_DEST}"/lib \
+	--disable-nls \
+	--disable-multilib \
+	--disable-werror \
+	--enable-deterministic-archives \
+	--disable-compressed-debug-sections 
+
+make -j2
+
+make install
+
+cd ..
+rm -rf build
