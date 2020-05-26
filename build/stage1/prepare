@@ -25,7 +25,7 @@ PATH=/tools/bin:/bin:/usr/bin
 export LC_ALL
 export PATH
 
-STAGE1_TARGET="x86_64-stage1-linux-musl"
+STAGE1_TARGET="x86_64-linux-musl"
 STAGE1_ARCH="x86"
 STAGE1_CPU="x86-64"
 STAGE1_HOST="x86_64-pc-linux-gnu"
@@ -55,9 +55,13 @@ chmod 777 "${BUILD_ROOT_DIR}"/source
 
 chown -R "${BUILD_USER}":"${BUILD_GROUP}" /home/"${BUILD_USER}"
 
-# Link the directory containing the compiled tools to the build system.
+# Link the directory containing the compiled tools to the build system. 
+# 
+# This enables the toolchain to be compiled such that it always refers to 
+# /tools. This way, the compiler, assembler and linker will work in the build
+# environment and the chrooted environment just the same.
 ln -sv "${BUILD_ROOT_DIR}"/tools /
 
 # Add the build directory to their environment.
-printf 'STAGE1_DEST=%s \n\nexport STAGE1_DEST\n' "${BUILD_ROOT_DIR}" >> /home/"${BUILD_USER}"/.bashrc
+printf 'STAGE1_ROOT_DIR=%s \n\nexport STAGE1_ROOT_DIR\n' "${BUILD_ROOT_DIR}" >> /home/"${BUILD_USER}"/.bashrc
 
