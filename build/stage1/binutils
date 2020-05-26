@@ -6,7 +6,7 @@ BUILD_DEST_DIR=/tools  # A place to store compiled binaries.
 BUILD_USER=build
 BUILD_ROOT_DIR="${STAGE1_ROOT_DIR:-}"
 
-BINUTILS_VERSION="2.34"
+VERSION="2.34"
 
 # The purpose of the target triplet is to provide a means for the system and 
 # compilers to determine specific information about any given binary.
@@ -39,21 +39,21 @@ TARGET_TRIPLET="${STAGE1_TARGET:-}"
 cd "${BUILD_ROOT_DIR}"/source
 
 # Download from upstream.
-wget https://ftp.gnu.org/gnu/binutils/binutils-"${BINUTILS_VERSION}".tar.xz
-xz -d binutils-"${BINUTILS_VERSION}".tar.xz
-tar xf binutils-"${BINUTILS_VERSION}".tar
+wget https://ftp.gnu.org/gnu/binutils/binutils-"${VERSION}".tar.xz
+xz -d binutils-"${VERSION}".tar.xz
+tar -xf binutils-"${VERSION}".tar
 
 # Prepare the build folder.
 mkdir -v build && cd build
 
 # Configure the Source
-../binutils-"${BINUTILS_VERSION}"/./configure \
-	--with-sysroot="${BUILD_ROOT_DIR}" \
-	--prefix="${BUILD_DEST_DIR}" \
-	--with-lib-path="${BUILD_DEST_DIR}"/lib \
-	--target="${TARGET_TRIPLET}" \
-	--disable-nls \
-	--disable-werror
+../binutils-"${VERSION}"/./configure      \
+  --prefix="${BUILD_DEST_DIR}"            \
+  --with-lib-path="${BUILD_DEST_DIR}"/lib \
+  --with-sysroot="${BUILD_ROOT_DIR}"      \
+  --target="${TARGET_TRIPLET}"            \
+  --disable-nls                           \
+  --disable-werror
 
 make -j2
 
