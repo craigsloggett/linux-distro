@@ -56,7 +56,7 @@ cd ..
 # Prepare the build folder.
 mkdir -v build && cd build
 
-# Configure the Source
+# Configure the source.
 ../gcc-"${VERSION}"/./configure                               \
   --prefix="${BUILD_DEST_DIR}"                                \
   --with-local-prefix="${BUILD_DEST_DIR}"                     \
@@ -84,10 +84,11 @@ mkdir -v build && cd build
   --enable-clocale=generic                                    \
   --enable-languages=c 
 
-make all-gcc all-target-libgcc
+# Compile the source.
+make -j4 all-gcc all-target-libgcc
+make install-gcc install-target-libgcc
 
-make install
-
+# Cleanup.
 cd ..
 rm -rf build
 

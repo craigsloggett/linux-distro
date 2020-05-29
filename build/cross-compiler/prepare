@@ -50,6 +50,7 @@ chown "${BUILD_USER}":"${BUILD_GROUP}" /home/"${BUILD_USER}"/.bash_profile
 mkdir -p "${BUILD_ROOT_DIR}"
 mkdir -p "${BUILD_ROOT_DIR}"/source
 mkdir -p "${BUILD_ROOT_DIR}"/tools
+mkdir -p "${BUILD_ROOT_DIR}"/cross-tools
 
 chmod 777 "${BUILD_ROOT_DIR}"/source
 
@@ -61,6 +62,7 @@ chown -R "${BUILD_USER}":"${BUILD_GROUP}" /home/"${BUILD_USER}"
 # /tools. This way, the compiler, assembler and linker will work in the build
 # environment and the chrooted environment just the same.
 ln -sv "${BUILD_ROOT_DIR}"/tools /
+ln -sv "${BUILD_ROOT_DIR}"/cross-tools /
 
 # Add the build directory to their environment.
 printf 'STAGE1_ROOT_DIR=%s \n\nexport STAGE1_ROOT_DIR\n' "${BUILD_ROOT_DIR}" >> /home/"${BUILD_USER}"/.bashrc

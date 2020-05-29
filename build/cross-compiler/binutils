@@ -55,10 +55,11 @@ mkdir -v build && cd build
   --disable-nls                           \
   --disable-werror
 
-make -j2
+# Compile the source.
+make -j4
+make install 
 
-make install
-
+# Cleanup.
 cd ..
 rm -rf build
 

@@ -1,0 +1,39 @@
+#!/bin/sh -e
+#
+# Stage 1 - Build musl libc
+
+BUILD_DEST_DIR=/tools  # A place to store compiled binaries.
+BUILD_USER=build
+BUILD_ROOT_DIR="${STAGE1_ROOT_DIR:-}"
+
+VERSION="1.1.23"
+
+TARGET_TRIPLET="${STAGE1_TARGET:-}"
+
+cd "${BUILD_ROOT_DIR}"/source
+
+# Download from upstream.
+wget https://www.musl-libc.org/releases/musl-"${VERSION}".tar.gz
+gunzip musl-"${VERSION}".tar.gz
+tar -xf musl-"${VERSION}".tar
+
+# Prepare the build folder.
+mkdir -v build && cd build
+
+# Configure the source.
+../musl-"${VERSION}"/./configure CROSS_COMPILE="${TARGET_TRIPLET}"- \
+  --prefix=/ \
+  --target="${TARGET_TRIPLET}"
+
+# Compile the source.
+make 
+DESTDIR=/tools make install
+
+# Add missing directory and link.
+mkdir -v "${BUILD_DEST_DIR}"/usr
+ln -sv "${BUILD_DEST_DIR}"/include "${BUILD_DEST_DIR}"/usr/include
+
+# Cleanup.
+cd ..
+rm -rf build
+
