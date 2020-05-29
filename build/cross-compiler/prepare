@@ -1,10 +1,10 @@
 #!/bin/sh -e
 #
-# Stage 1 - prepare build environment.
+# Cross Compiler - prepare build environment.
 
 BUILD_USER=build
 BUILD_GROUP=build
-BUILD_ROOT_DIR=/home/"${BUILD_USER}"/src/build
+BUILD_ROOT_DIR=/home/"${BUILD_USER}"/cross-compiler
 
 # Create a build user (non-root).
 getent group "${BUILD_GROUP}" > /dev/null || groupadd "${BUILD_GROUP}"
@@ -49,19 +49,17 @@ chown "${BUILD_USER}":"${BUILD_GROUP}" /home/"${BUILD_USER}"/.bash_profile
 # Prepare the build directories and permissions.
 mkdir -p "${BUILD_ROOT_DIR}"
 mkdir -p "${BUILD_ROOT_DIR}"/source
-mkdir -p "${BUILD_ROOT_DIR}"/tools
 mkdir -p "${BUILD_ROOT_DIR}"/cross-tools
 
 chmod 777 "${BUILD_ROOT_DIR}"/source
 
-chown -R "${BUILD_USER}":"${BUILD_GROUP}" /home/"${BUILD_USER}"
+chown -R "${BUILD_USER}":"${BUILD_GROUP}" "${BUILD_ROOT_DIR}"
 
 # Link the directory containing the compiled tools to the build system. 
 # 
 # This enables the toolchain to be compiled such that it always refers to 
-# /tools. This way, the compiler, assembler and linker will work in the build
-# environment and the chrooted environment just the same.
-ln -sv "${BUILD_ROOT_DIR}"/tools /
+# /cross-tools. This way, the compiler, assembler and linker will work in the 
+# build environment and the chrooted environment just the same.
 ln -sv "${BUILD_ROOT_DIR}"/cross-tools /
 
 # Add the build directory to their environment.
