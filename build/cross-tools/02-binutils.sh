@@ -1,16 +1,16 @@
 #!/bin/sh -e
 #
-# Cross Tools - Build binutils
+# Cross Tools - binutils
 
 BUILD_DEST_DIR=/tools  # A place to store compiled binaries.
 BUILD_USER=build
-BUILD_ROOT_DIR="${STAGE1_ROOT_DIR:-}"
+CROSS_TOOLS_DIR="${STAGE1_ROOT_DIR:-}"
 
 VERSION="2.34"
 
 TARGET_TRIPLET="${STAGE1_TARGET:-}"
 
-cd "${BUILD_ROOT_DIR}"/source
+cd "${CROSS_TOOLS_DIR}"/source
 
 # Download from upstream.
 wget https://ftp.gnu.org/gnu/binutils/binutils-"${VERSION}".tar.xz
@@ -24,7 +24,7 @@ mkdir -v build && cd build
 ../binutils-"${VERSION}"/./configure      \
   --prefix="${BUILD_DEST_DIR}"            \
   --with-lib-path="${BUILD_DEST_DIR}"/lib \
-  --with-sysroot="${BUILD_ROOT_DIR}"      \
+  --with-sysroot="${CROSS_TOOLS_DIR}"      \
   --target="${TARGET_TRIPLET}"            \
   --disable-nls                           \
   --disable-werror

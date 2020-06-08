@@ -1,17 +1,14 @@
 #!/bin/sh -e
 #
-# Cross Tools - Build linux header files
+# Cross Tools - Linux Header Files
 
-BUILD_DEST_DIR=/tools  # A place to store compiled binaries.
-BUILD_USER=build
-BUILD_ROOT_DIR="${STAGE1_ROOT_DIR:-}"
+BUILD_SRC_DIR="${CROSS_TOOLS_DIR}"/source
+BUILD_DEST_DIR="${CROSS_TOOLS_DIR}"/"${CROSS_TARGET}"
 
 VERSION="5.6.14"
 VERSION_MAJOR=`printf '%s\n' "${VERSION}" | cut -c1`
 
-TARGET_TRIPLET="${STAGE1_TARGET:-}"
-
-cd "${BUILD_ROOT_DIR}"/source
+cd "${BUILD_SRC_DIR}"
 
 # Download from upstream.
 wget http://cdn.kernel.org/pub/linux/kernel/v"${VERSION_MAJOR}".x/linux-"${VERSION}".tar.xz
@@ -24,10 +21,11 @@ cp -r ../linux-"${VERSION}"/* .
 
 # Compile the source.
 make mrproper
-make headers_check
-make headers
+make ARCH="${CROSS_ARCH}" headers_check
+make ARCH="${CROSS_ARCH}" headers
 
 # Install the headers.
+mkdir -v "${BUILD_DEST_DIR}"/include
 cp -r usr/include/* "${BUILD_DEST_DIR}"/include
 
 # Cleanup.

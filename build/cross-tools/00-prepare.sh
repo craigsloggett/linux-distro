@@ -55,6 +55,8 @@ chown "${BUILD_USER}":"${BUILD_GROUP}" /home/"${BUILD_USER}"/.bash_profile
 # Prepare the build directories and permissions.
 mkdir -p "${CROSS_TOOLS_DIR}"
 mkdir -p "${CROSS_TOOLS_DIR}"/source
+mkdir -p "${CROSS_TOOLS_DIR}"/"${CROSS_TARGET}"
+ln -sf . "${CROSS_TOOLS_DIR}"/"${CROSS_TARGET}"/usr
 
 chmod 777 "${CROSS_TOOLS_DIR}"/source
 
@@ -62,8 +64,4 @@ chown -R "${BUILD_USER}":"${BUILD_GROUP}" "${CROSS_TOOLS_DIR}"
 
 # Add the build directory to their environment.
 printf 'CROSS_TOOLS_DIR=%s \n\nexport CROSS_TOOLS_DIR\n' "${CROSS_TOOLS_DIR}" >> /home/"${BUILD_USER}"/.bashrc
-
-# Create a sysroot directory for the compiler destination.
-mkdir -p "${CROSS_TOOLS_DIR}"/"${CROSS_TARGET}"
-ln -sf . "${CROSS_TOOLS_DIR}"/"${CROSS_TARGET}"/usr
 
