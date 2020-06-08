@@ -5,8 +5,9 @@
 BUILD_USER=build
 BUILD_GROUP=build
 
-CROSS_TOOLS_DIR=/home/"${BUILD_USER}"/cross-tools
 CROSS_TARGET=x86_64-linux-musl
+CROSS_ROOT_DIR=/home/"${BUILD_USER}"/build-root
+CROSS_TOOLS_DIR="${CROSS_ROOT_DIR}"/cross-tools
 
 # Create a build user (non-root).
 getent group "${BUILD_GROUP}" > /dev/null 2>&1 || groupadd "${BUILD_GROUP}"
@@ -27,19 +28,28 @@ PATH=/tools/bin:/bin:/usr/bin
 export LC_ALL
 export PATH
 
-CROSS_BUILD="x86_64-linux-gnu"
-CROSS_HOST="x86_64-linux-gnu"
-CROSS_TARGET="x86_64-linux-musl"
-
 CROSS_CPU=generic
 CROSS_ARCH=x86_64
+
+CROSS_BUILD=x86_64-linux-gnu
+CROSS_HOST=x86_64-linux-gnu
+EOF
+
+# Add the build directory to their environment.
+printf 'CROSS_TARGET=%s\n\n' "${CROSS_TARGET}" >> /home/"${BUILD_USER}"/.bashrc
+printf 'CROSS_ROOT_DIR=%s\n' "${CROSS_ROOT_DIR}" >> /home/"${BUILD_USER}"/.bashrc
+printf 'CROSS_TOOLS_DIR=%s\n\n' "${CROSS_TOOLS_DIR}" >> /home/"${BUILD_USER}"/.bashrc
+
+cat >> /home/"${BUILD_USER}"/.bashrc << "EOF"
+export CROSS_CPU
+export CROSS_ARCH
 
 export CROSS_BUILD
 export CROSS_HOST
 export CROSS_TARGET
 
-export CROSS_CPU
-export CROSS_ARCH
+export CROSS_ROOT_DIR
+export CROSS_TOOLS_DIR
 
 unset CFLAGS
 unset CXXFLAGS
@@ -53,15 +63,13 @@ chown "${BUILD_USER}":"${BUILD_GROUP}" /home/"${BUILD_USER}"/.bashrc
 chown "${BUILD_USER}":"${BUILD_GROUP}" /home/"${BUILD_USER}"/.bash_profile
 
 # Prepare the build directories and permissions.
+mkdir -p "${CROSS_ROOT_DIR}"
+mkdir -p "${CROSS_ROOT_DIR}"/source
 mkdir -p "${CROSS_TOOLS_DIR}"
-mkdir -p "${CROSS_TOOLS_DIR}"/source
 mkdir -p "${CROSS_TOOLS_DIR}"/"${CROSS_TARGET}"
 ln -sf . "${CROSS_TOOLS_DIR}"/"${CROSS_TARGET}"/usr
 
-chmod 777 "${CROSS_TOOLS_DIR}"/source
+chmod 777 "${CROSS_ROOT_DIR}"/source
 
-chown -R "${BUILD_USER}":"${BUILD_GROUP}" "${CROSS_TOOLS_DIR}"
-
-# Add the build directory to their environment.
-printf 'CROSS_TOOLS_DIR=%s \n\nexport CROSS_TOOLS_DIR\n' "${CROSS_TOOLS_DIR}" >> /home/"${BUILD_USER}"/.bashrc
+chown -R "${BUILD_USER}":"${BUILD_GROUP}" "${CROSS_ROOT_DIR}"
 
