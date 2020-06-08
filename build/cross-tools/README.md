@@ -36,5 +36,5 @@ HOST=x86_64-linux-gnu
 TARGET=x86_64-linux-musl
 ```
 
-Since the toolchain can be run from any Debian VM, the target can be anything in the future (e.g. aarch64-linux-musl, riscv64-linux-musl, etc.).
+Since the toolchain can be run from any Debian VM, the target can be anything in the future (e.g. `aarch64-linux-musl`, `riscv64-linux-musl`, etc.).
 
