@@ -4,11 +4,13 @@
 
 BUILD_USER=build
 BUILD_GROUP=build
+
 CROSS_TOOLS_DIR=/home/"${BUILD_USER}"/cross-tools
+CROSS_TARGET=x86_64-linux-musl
 
 # Create a build user (non-root).
-getent group "${BUILD_GROUP}" > /dev/null || groupadd "${BUILD_GROUP}"
-id -u "${BUILD_USER}" > /dev/null || useradd -s /bin/bash -g "${BUILD_GROUP}" -m -k /dev/null "${BUILD_USER}"
+getent group "${BUILD_GROUP}" &> /dev/null || groupadd "${BUILD_GROUP}"
+id -u "${BUILD_USER}" &> /dev/null /dev/null || useradd -s /bin/bash -g "${BUILD_GROUP}" -m -k /dev/null "${BUILD_USER}"
 
 # Setup their environment.
 cat > /home/"${BUILD_USER}"/.bash_profile << "EOF"
