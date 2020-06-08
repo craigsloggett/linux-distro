@@ -1,6 +1,6 @@
 #!/bin/sh -e
 #
-# Stage 1 - Build linux header files
+# Cross Tools - Build linux header files
 
 BUILD_DEST_DIR=/tools  # A place to store compiled binaries.
 BUILD_USER=build

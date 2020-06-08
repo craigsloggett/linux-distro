@@ -1,38 +1,12 @@
 #!/bin/sh -e
 #
-# Stage 1 - Build binutils
+# Cross Tools - Build binutils
 
 BUILD_DEST_DIR=/tools  # A place to store compiled binaries.
 BUILD_USER=build
 BUILD_ROOT_DIR="${STAGE1_ROOT_DIR:-}"
 
 VERSION="2.34"
-
-# The purpose of the target triplet is to provide a means for the system and 
-# compilers to determine specific information about any given binary.
-# 
-# The triplet itself is broken into three parts: machine-vender-os
-# 
-# In the most complex case of cross-compiling, three system types are involved.
-# The options to specify them are:
-#
-# --build=build-type
-#     The type of system on which the package is being configured and compiled.
-#     It defaults to the result of running `config.guess`.
-# --host=host-type
-#     The type of system on which the package runs. By default it is the same 
-#     as the build machine. Specifying it enables the cross-compilation mode.
-# --target=target-type
-#     The type of system for which any compiler tools in the package produce 
-#     code. By default, it is the same as host. 
-#
-# x86_64-linux-gnu
-# 
-# This target triplet indicates an x86_64 compatible machine and an elf 
-# binary compatible operating system.
-#
-# For Stage1 builds we only specify the target since we will be using the same
-# system to build Stage1 as well as use it.
 
 TARGET_TRIPLET="${STAGE1_TARGET:-}"
 

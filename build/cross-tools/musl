@@ -1,6 +1,6 @@
 #!/bin/sh -e
 #
-# Stage 1 - Build musl libc
+# Cross Tools - Build musl libc
 
 BUILD_DEST_DIR=/tools  # A place to store compiled binaries.
 BUILD_USER=build

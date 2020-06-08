@@ -1,6 +1,6 @@
 #!/bin/sh -e
 #
-# Stage 1 - Build gcc
+# Cross Tools - Build gcc
 
 BUILD_DEST_DIR=/tools  # A place to store compiled binaries.
 BUILD_USER=build

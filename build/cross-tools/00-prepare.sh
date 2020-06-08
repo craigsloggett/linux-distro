@@ -25,13 +25,19 @@ PATH=/tools/bin:/bin:/usr/bin
 export LC_ALL
 export PATH
 
-BUILD_TRIPLET="x86_64-linux-gnu"
-HOST_TRIPLET="x86_64-linux-gnu"
-TARGET_TRIPLET="x86_64-linux-musl"
+CROSS_BUILD="x86_64-linux-gnu"
+CROSS_HOST="x86_64-linux-gnu"
+CROSS_TARGET="x86_64-linux-musl"
 
-export BUILD_TRIPLET
-export HOST_TRIPLET
-export TARGET_TRIPLET
+CROSS_CPU=generic
+CROSS_ARCH=x86_64
+
+export CROSS_BUILD
+export CROSS_HOST
+export CROSS_TARGET
+
+export CROSS_CPU
+export CROSS_ARCH
 
 unset CFLAGS
 unset CXXFLAGS
@@ -52,13 +58,10 @@ chmod 777 "${CROSS_TOOLS_DIR}"/source
 
 chown -R "${BUILD_USER}":"${BUILD_GROUP}" "${CROSS_TOOLS_DIR}"
 
-# Link the directory containing the compiled tools to the build system. 
-# 
-# This enables the toolchain to be compiled such that it always refers to 
-# /cross-tools. This way, the compiler, assembler and linker will work in the 
-# build environment and the chrooted environment just the same.
-ln -sv "${CROSS_TOOLS_DIR}"/cross-tools /
-
 # Add the build directory to their environment.
 printf 'CROSS_TOOLS_DIR=%s \n\nexport CROSS_TOOLS_DIR\n' "${CROSS_TOOLS_DIR}" >> /home/"${BUILD_USER}"/.bashrc
+
+# Create a sysroot directory for the compiler destination.
+mkdir -p "${CROSS_TOOLS_DIR}"/"${CROSS_TARGET}"
+ln -sf . "${CROSS_TOOLS_DIR}"/"${CROSS_TARGET}"/usr
 
