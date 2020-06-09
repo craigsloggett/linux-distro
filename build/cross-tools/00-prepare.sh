@@ -6,6 +6,8 @@ BUILD_USER=build
 BUILD_GROUP=build
 
 CROSS_TARGET=x86_64-linux-musl
+CROSS_ARCH=x86
+CROSS_CPU=x86-64
 CROSS_ROOT_DIR=/home/"${BUILD_USER}"/build-root
 CROSS_TOOLS_DIR="${CROSS_ROOT_DIR}"/cross-tools
 
@@ -28,8 +30,8 @@ PATH=/tools/bin:/bin:/usr/bin
 export LC_ALL
 export PATH
 
-CROSS_CPU=x86-64
 CROSS_ARCH=x86
+CROSS_CPU=x86-64
 
 CROSS_BUILD=x86_64-linux-gnu
 CROSS_HOST=x86_64-linux-gnu
@@ -37,16 +39,18 @@ EOF
 
 # Add the build directory to their environment.
 printf 'CROSS_TARGET=%s\n\n' "${CROSS_TARGET}" >> /home/"${BUILD_USER}"/.bashrc
+printf 'CROSS_ARCH=%s\n' "${CROSS_ARCh}" >> /home/"${BUILD_USER}"/.bashrc
+printf 'CROSS_CPU=%s\n\n' "${CROSS_CPU}" >> /home/"${BUILD_USER}"/.bashrc
 printf 'CROSS_ROOT_DIR=%s\n' "${CROSS_ROOT_DIR}" >> /home/"${BUILD_USER}"/.bashrc
 printf 'CROSS_TOOLS_DIR=%s\n\n' "${CROSS_TOOLS_DIR}" >> /home/"${BUILD_USER}"/.bashrc
 
 cat >> /home/"${BUILD_USER}"/.bashrc << "EOF"
-export CROSS_CPU
-export CROSS_ARCH
-
 export CROSS_BUILD
 export CROSS_HOST
 export CROSS_TARGET
+
+export CROSS_ARCH
+export CROSS_CPU
 
 export CROSS_ROOT_DIR
 export CROSS_TOOLS_DIR
