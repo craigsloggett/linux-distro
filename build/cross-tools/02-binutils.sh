@@ -2,7 +2,7 @@
 #
 # Cross Tools - binutils
 
-BUILD_SRC_DIR="${CROSS_TOOLS_DIR}"/source
+BUILD_SRC_DIR="${CROSS_ROOT_DIR}"/source
 BUILD_DEST_DIR="${CROSS_TOOLS_DIR}"/"${CROSS_TARGET}"
 
 VERSION="2.34"
@@ -18,12 +18,14 @@ tar -xf binutils-"${VERSION}".tar
 mkdir -v build && cd build
 
 # Configure the Source
-../binutils-"${VERSION}"/./configure \
-  --prefix="${CROSS_TOOLS_DIR}"      \
-  --with-sysroot="${BUILD_DEST_DIR}" \
-  --target="${CROSS_TARGET}"         \
-  --disable-nls                      \
-  --disable-multilib
+../binutils-"${VERSION}"/./configure      \
+  --prefix="${CROSS_TOOLS_DIR}"           \
+  --with-sysroot="${BUILD_DEST_DIR}"      \
+  --with-lib-path="${BUILD_DEST_DIR}"/lib \
+  --target="${CROSS_TARGET}"              \
+  --disable-nls                           \
+  --disable-multilib                      \
+  --disable-werror
 
 # Compile the source.
 make configure-host
