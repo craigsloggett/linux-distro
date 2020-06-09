@@ -25,6 +25,8 @@ printf 'export RANLIB\n' >> /home/"${BUILD_USER}"/.bashrc
 printf 'export READELF\n' >> /home/"${BUILD_USER}"/.bashrc
 printf 'export STRIP\n' >> /home/"${BUILD_USER}"/.bashrc
 
+source /home/"${BUILD_USER}"/.bashrc
+
 # Prepare the build directories and permissions.
 mkdir -p "${TARGET_TOOLS_DIR}"
 chown -R "${BUILD_USER}":"${BUILD_GROUP}" "${TARGET_TOOLS_DIR}"
