@@ -25,11 +25,12 @@ set +h
 umask 022
 
 LC_ALL=POSIX
-PATH=/tools/bin:/bin:/usr/bin
+EOF
 
-export LC_ALL
-export PATH
+# Add the build directory to their environment.
+printf 'PATH=%s:/bin:/usr/bin\n\n' "${CROSS_TOOLS_DIR}/bin" >> /home/"${BUILD_USER}"/.bashrc
 
+cat >> /home/"${BUILD_USER}"/.bashrc << "EOF"
 CROSS_BUILD=x86_64-linux-gnu
 CROSS_HOST=x86_64-linux-gnu
 EOF
@@ -42,6 +43,9 @@ printf 'CROSS_ROOT_DIR=%s\n' "${CROSS_ROOT_DIR}" >> /home/"${BUILD_USER}"/.bashr
 printf 'CROSS_TOOLS_DIR=%s\n\n' "${CROSS_TOOLS_DIR}" >> /home/"${BUILD_USER}"/.bashrc
 
 cat >> /home/"${BUILD_USER}"/.bashrc << "EOF"
+export LC_ALL
+export PATH
+
 export CROSS_BUILD
 export CROSS_HOST
 export CROSS_TARGET
