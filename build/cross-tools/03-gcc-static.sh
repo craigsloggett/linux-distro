@@ -44,7 +44,7 @@ mkdir -v build && cd build
   --host="${CROSS_HOST}"             \
   --target="${CROSS_TARGET}"         \
   --with-sysroot="${BUILD_DEST_DIR}" \
-  --with-arch="${CROSS_ARCH}"        \
+  --with-arch="${CROSS_CPU}"         \
   --with-newlib                      \
   --without-headers                  \
   --disable-nls                      \
