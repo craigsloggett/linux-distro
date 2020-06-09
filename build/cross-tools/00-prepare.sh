@@ -31,31 +31,21 @@ EOF
 printf 'PATH=%s:/bin:/usr/bin\n\n' "${CROSS_TOOLS_DIR}/bin" >> /home/"${BUILD_USER}"/.bashrc
 
 cat >> /home/"${BUILD_USER}"/.bashrc << "EOF"
-CROSS_BUILD=x86_64-linux-gnu
-CROSS_HOST=x86_64-linux-gnu
-EOF
-
-# Add the build directory to their environment.
-printf 'CROSS_TARGET=%s\n\n' "${CROSS_TARGET}" >> /home/"${BUILD_USER}"/.bashrc
-printf 'CROSS_ARCH=%s\n' "${CROSS_ARCH}" >> /home/"${BUILD_USER}"/.bashrc
-printf 'CROSS_CPU=%s\n\n' "${CROSS_CPU}" >> /home/"${BUILD_USER}"/.bashrc
-printf 'CROSS_ROOT_DIR=%s\n' "${CROSS_ROOT_DIR}" >> /home/"${BUILD_USER}"/.bashrc
-printf 'CROSS_TOOLS_DIR=%s\n\n' "${CROSS_TOOLS_DIR}" >> /home/"${BUILD_USER}"/.bashrc
-
-cat >> /home/"${BUILD_USER}"/.bashrc << "EOF"
 export LC_ALL
 export PATH
 
-export CROSS_BUILD
-export CROSS_HOST
-export CROSS_TARGET
+export CROSS_BUILD=x86_64-linux-gnu
+export CROSS_HOST=x86_64-linux-gnu
+EOF
 
-export CROSS_ARCH
-export CROSS_CPU
+# Add the build directory to their environment.
+printf 'export CROSS_TARGET=%s\n\n' "${CROSS_TARGET}" >> /home/"${BUILD_USER}"/.bashrc
+printf 'export CROSS_ARCH=%s\n' "${CROSS_ARCH}" >> /home/"${BUILD_USER}"/.bashrc
+printf 'export CROSS_CPU=%s\n\n' "${CROSS_CPU}" >> /home/"${BUILD_USER}"/.bashrc
+printf 'export CROSS_ROOT_DIR=%s\n' "${CROSS_ROOT_DIR}" >> /home/"${BUILD_USER}"/.bashrc
+printf 'export CROSS_TOOLS_DIR=%s\n\n' "${CROSS_TOOLS_DIR}" >> /home/"${BUILD_USER}"/.bashrc
 
-export CROSS_ROOT_DIR
-export CROSS_TOOLS_DIR
-
+cat >> /home/"${BUILD_USER}"/.bashrc << "EOF"
 unset CFLAGS
 unset CXXFLAGS
 
