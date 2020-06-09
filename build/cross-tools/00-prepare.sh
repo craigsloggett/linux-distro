@@ -30,9 +30,6 @@ PATH=/tools/bin:/bin:/usr/bin
 export LC_ALL
 export PATH
 
-CROSS_ARCH=x86
-CROSS_CPU=x86-64
-
 CROSS_BUILD=x86_64-linux-gnu
 CROSS_HOST=x86_64-linux-gnu
 EOF
