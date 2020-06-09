@@ -2,7 +2,7 @@
 #
 # Cross Tools - Linux Header Files
 
-BUILD_SRC_DIR="${CROSS_TOOLS_DIR}"/source
+BUILD_SRC_DIR="${CROSS_ROOT_DIR}"/source
 BUILD_DEST_DIR="${CROSS_TOOLS_DIR}"/"${CROSS_TARGET}"
 
 VERSION="5.6.14"
