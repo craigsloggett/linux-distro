@@ -72,7 +72,6 @@ mkdir -p "${CROSS_ROOT_DIR}"
 mkdir -p "${CROSS_ROOT_DIR}"/source
 mkdir -p "${CROSS_TOOLS_DIR}"
 mkdir -p "${CROSS_TOOLS_DIR}"/"${CROSS_TARGET}"
-ln -sf . "${CROSS_TOOLS_DIR}"/"${CROSS_TARGET}"/usr
 
 chmod 777 "${CROSS_ROOT_DIR}"/source
 

@@ -28,8 +28,8 @@ make
 DESTDIR="${BUILD_DEST_DIR}" make install
 
 # Add missing directory and link.
-#mkdir -v "${BUILD_DEST_DIR}"/usr
-#ln -sv "${BUILD_DEST_DIR}"/include "${BUILD_DEST_DIR}"/usr/include
+mkdir -v "${BUILD_DEST_DIR}"/usr
+ln -sv "${BUILD_DEST_DIR}"/include "${BUILD_DEST_DIR}"/usr/include
 
 # Cleanup.
 cd ..
