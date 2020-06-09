@@ -39,7 +39,7 @@ EOF
 
 # Add the build directory to their environment.
 printf 'CROSS_TARGET=%s\n\n' "${CROSS_TARGET}" >> /home/"${BUILD_USER}"/.bashrc
-printf 'CROSS_ARCH=%s\n' "${CROSS_ARCh}" >> /home/"${BUILD_USER}"/.bashrc
+printf 'CROSS_ARCH=%s\n' "${CROSS_ARCH}" >> /home/"${BUILD_USER}"/.bashrc
 printf 'CROSS_CPU=%s\n\n' "${CROSS_CPU}" >> /home/"${BUILD_USER}"/.bashrc
 printf 'CROSS_ROOT_DIR=%s\n' "${CROSS_ROOT_DIR}" >> /home/"${BUILD_USER}"/.bashrc
 printf 'CROSS_TOOLS_DIR=%s\n\n' "${CROSS_TOOLS_DIR}" >> /home/"${BUILD_USER}"/.bashrc
