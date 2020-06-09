@@ -1,6 +1,6 @@
 #!/bin/sh -e
 #
-# Cross Tools - Linux Header Files
+# Cross Tools - linux header files
 
 BUILD_SRC_DIR="${CROSS_ROOT_DIR}"/source
 BUILD_DEST_DIR="${CROSS_TOOLS_DIR}"/"${CROSS_TARGET}"

@@ -1,6 +1,6 @@
 #!/bin/sh -e
 #
-# Cross Tools - Prepare the build environment.
+# Cross Tools - environment setup
 
 BUILD_USER=build
 BUILD_GROUP=build
@@ -28,8 +28,8 @@ PATH=/tools/bin:/bin:/usr/bin
 export LC_ALL
 export PATH
 
-CROSS_CPU=generic
-CROSS_ARCH=x86_64
+CROSS_CPU=x86-64
+CROSS_ARCH=x86
 
 CROSS_BUILD=x86_64-linux-gnu
 CROSS_HOST=x86_64-linux-gnu
